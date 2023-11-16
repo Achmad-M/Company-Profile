@@ -86,7 +86,7 @@
                                             <small>Teacher</small>
                                         </div>
                                     </div>
-                                    <span class="bg-primary text-white rounded-pill py-2 px-3" href="">$99</span>
+                                    <a class="bg-primary text-white rounded-pill py-2 px-3" href="{{ route('pendaftaran') }}">$99</a> 
                                 </div>
                                 <div class="row g-1">
                                     <div class="col-4">
@@ -126,7 +126,7 @@
                                             <small>Teacher</small>
                                         </div>
                                     </div>
-                                    <span class="bg-primary text-white rounded-pill py-2 px-3" href="">$99</span>
+                                    <a class="bg-primary text-white rounded-pill py-2 px-3" href="{{ route('pendaftaran') }}">$99</a>
                                 </div>
                                 <div class="row g-1">
                                     <div class="col-4">
@@ -166,7 +166,7 @@
                                             <small>Teacher</small>
                                         </div>
                                     </div>
-                                    <span class="bg-primary text-white rounded-pill py-2 px-3" href="">$99</span>
+                                    <a class="bg-primary text-white rounded-pill py-2 px-3" href="{{ route('pendaftaran') }}">$99</a>
                                 </div>
                                 <div class="row g-1">
                                     <div class="col-4">
@@ -206,7 +206,7 @@
                                             <small>Teacher</small>
                                         </div>
                                     </div>
-                                    <span class="bg-primary text-white rounded-pill py-2 px-3" href="">$99</span>
+                                    <a class="bg-primary text-white rounded-pill py-2 px-3" href="{{ route('pendaftaran') }}">$99</a>
                                 </div>
                                 <div class="row g-1">
                                     <div class="col-4">
@@ -246,7 +246,7 @@
                                             <small>Teacher</small>
                                         </div>
                                     </div>
-                                    <span class="bg-primary text-white rounded-pill py-2 px-3" href="">$99</span>
+                                    <a class="bg-primary text-white rounded-pill py-2 px-3" href="{{ route('pendaftaran') }}">$99</a>
                                 </div>
                                 <div class="row g-1">
                                     <div class="col-4">
@@ -286,7 +286,7 @@
                                             <small>Teacher</small>
                                         </div>
                                     </div>
-                                    <span class="bg-primary text-white rounded-pill py-2 px-3" href="">$99</span>
+                                    <a class="bg-primary text-white rounded-pill py-2 px-3" href="{{ route('pendaftaran') }}">$99</a>
                                 </div>
                                 <div class="row g-1">
                                     <div class="col-4">
