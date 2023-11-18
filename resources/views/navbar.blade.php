@@ -9,23 +9,23 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav mx-auto">
-            <a href="{{ route('index') }}" class="nav-item nav-link {{ Request::is('index') ? 'active' : '' }}">Home</a>
-            <a href="{{ route('about') }}" class="nav-item nav-link {{ Request::is('about') ? 'active' : '' }}">About Us</a>
-            <a href="{{ route('classes') }}" class="nav-item nav-link {{ Request::is('classes') ? 'active' : '' }}">Classes</a>
+            <a href="{{ route('index') }}" class="nav-item nav-link {{ Request::is('index') ? 'active' : '' }}">Beranda</a>
+            <a href="{{ route('about') }}" class="nav-item nav-link {{ Request::is('about') ? 'active' : '' }}">Tentang Kami</a>
+            <a href="{{ route('classes') }}" class="nav-item nav-link {{ Request::is('classes') ? 'active' : '' }}">Kelas</a>
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lainnya</a>
                 <div class="dropdown-menu rounded-0 rounded-bottom border-0 shadow-sm m-0">
-                    <a href="{{ route('facility') }}" class="dropdown-item">School Facilities</a>
-                    <a href="{{ route('team') }}" class="dropdown-item">Popular Teachers</a>
-                    <a href="{{ route('call-to-action') }}" class="dropdown-item">Become A Teachers</a>
-                    <a href="{{ route('appointment') }}" class="dropdown-item">Make Appointment</a>
-                    <a href="{{ route('testimonial') }}" class="dropdown-item">Testimonial</a>
-                    <a href="{{ route('error') }}" class="dropdown-item">404 Error</a>
+                    <a href="{{ route('facility') }}" class="dropdown-item">Fasilitas Bimbel</a>
+                    <a href="{{ route('team') }}" class="dropdown-item">Pengajar Populer</a>
+                    <!-- <a href="{{ route('call-to-action') }}" class="dropdown-item">Become A Teachers</a> -->
+                    <!-- <a href="{{ route('appointment') }}" class="dropdown-item">Make Appointment</a> -->
+                    <!-- <a href="{{ route('testimonial') }}" class="dropdown-item">Testimonial</a>
+                    <a href="{{ route('error') }}" class="dropdown-item">404 Error</a> -->
                 </div>
             </div>
-            <a href="{{ route('contact') }}" class="nav-item nav-link {{ Request::is('contact') ? 'active' : '' }}">Contact Us</a>
+            <a href="https://wa.me/6285651319976" class="nav-item nav-link {{ Request::is('contact') ? 'active' : '' }}">Hubungi Kami</a>
         </div>
-        <a href="{{ route('classes') }}" class="btn btn-primary rounded-pill px-3 d-none d-lg-block">Join Us<i class="fa fa-arrow-right ms-3"></i></a>
+        <a href="{{ route('classes') }}" class="btn btn-primary rounded-pill px-3 d-none d-lg-block">Daftar Kelas<i class="fa fa-arrow-right ms-3"></i></a>
     </div>
 </nav>
 <!-- Navbar End -->

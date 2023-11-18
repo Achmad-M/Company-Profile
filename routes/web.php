@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\KelasController;
+use App\Http\Controllers\DetailKelasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +17,16 @@ use App\Http\Controllers\PenggunaController;
 */
 
 Route::get('/', function () {
+    return redirect('/index');
+});
+Route::get('/index#', function () {
+    return redirect('/index');
+});
+
+Route::get('/index', function () {
     return view('index');
 })->name('index');
+
 
 Route::get('/about', function () {
     return view('about');
@@ -59,5 +69,10 @@ Route::get('/pendaftaran', function () {
 })->name('pendaftaran');
 
 Route::post('/store-pengguna', [PenggunaController::class, 'store'])->name('pengguna.store');
+
+Route::get('/classes', [DetailKelasController::class, 'index'])->name('classes');
+
+Route::get('/index', [DetailKelasController::class, 'home'])->name('index');
+
 
 ?>

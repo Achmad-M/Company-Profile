@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pengguna extends Model
 {
     protected $table = 'penggunas';
-    protected $fillable = ['alamat_pengguna_id', 'nama_lengkap', 'nama_panggilan', 'jenis_kelamin', 'tmpt_tgl_lahir', 'foto_diri', 'agama', 'no_hp', 'email','tingkat_sekolah', 'asal_sekolah', 'nama_ayah', 'nama_ibu', 'status_pembayaran'];
+    protected $fillable = ['alamat_pengguna_id', 'nama_lengkap', 'nama_panggilan', 'jenis_kelamin', 'tmpt_tgl_lahir', 'foto_diri', 'agama', 'no_hp', 'email','tingkat_sekolah', 'asal_sekolah', 'nama_ayah', 'nama_ibu','bukti_pembayaran', 'status_pembayaran'];
 
     public function alamatPengguna()
     {

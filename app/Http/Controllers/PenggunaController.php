@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pengguna;
 use App\Models\AlamatPengguna;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Cookie;
 
 class PenggunaController extends Controller
 {
@@ -25,16 +26,18 @@ class PenggunaController extends Controller
                 // Add validation rules for the Pengguna fields
                 'nama_lengkap' => 'required|string|max:255',
                 'nama_panggilan' => 'required|string|max:255',
+                'jenis_kelamin' => 'required|string|max:255',
                 'birthplace' => 'required|string|max:255',
                 'birthdate' => 'required|date',
                 'foto_diri' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'agama' => 'required|string|max:255',
                 'no_hp' => 'required|string|max:255',
                 'email' => 'nullable|email|max:255',
+                'tingkat_sekolah' => 'required|string|max:255',
                 'asal_sekolah' => 'nullable|string|max:255',
                 'nama_ayah' => 'required|string|max:255',
                 'nama_ibu' => 'required|string|max:255',
-                'status_pembayaran' => 'nullable|string|max:255',
+                'bukti_pembayaran' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
 
             // Create a new AlamatPengguna instance and fill it with the validated data
@@ -52,34 +55,54 @@ class PenggunaController extends Controller
             // Save the AlamatPengguna instance to the database
             $alamatPengguna->save();
 
-            // Process the uploaded photo
-            $photoPath = null;
-            if ($request->hasfile('foto_diri')) {
-                $file = $request->file('foto_diri');
-                $extension = $file->getClientOriginalExtension(); // getting image extension
-                $filename = time() . '.' . $extension;
-                $file->move('photos', $filename);
-                $photoPath = $filename;
-            }
+ // Process the uploaded photo
+        $photoPath = null;
+        if ($request->hasfile('foto_diri')) {
+            $file = $request->file('foto_diri');
+            $extension = $file->getClientOriginalExtension(); // getting image extension
+            $filename = time() . '.' . $extension;
+            $file->move('photos', $filename);
+            $photoPath = $filename;
+        }
+
+        // Process the uploaded payment proof
+        $paymentProofPath = null;
+        if ($request->hasfile('bukti_pembayaran')) {
+            $file = $request->file('bukti_pembayaran');
+            $extension = $file->getClientOriginalExtension(); // getting image extension
+            $filename = time() . '.' . $extension;
+            $file->move('payment_proofs', $filename);
+            $paymentProofPath = $filename;
+        }
+
+
+
 
             // Create a new Pengguna instance and fill it with the validated data
             $pengguna = new Pengguna([
                 'nama_lengkap' => $request->input('nama_lengkap'),
                 'nama_panggilan' => $request->input('nama_panggilan'),
+                'jenis_kelamin' => $request->input('jenis_kelamin'),
                 'tmpt_tgl_lahir' => $request->input('birthplace') . ', ' . $request->input('birthdate'),
                 'foto_diri' => $photoPath,
                 'agama' => $request->input('agama'),
                 'no_hp' => $request->input('no_hp'),
                 'email' => $request->input('email'),
+                'tingkat_sekolah' => $request->input('tingkat_sekolah'),
                 'asal_sekolah' => $request->input('asal_sekolah'),
                 'nama_ayah' => $request->input('nama_ayah'),
                 'nama_ibu' => $request->input('nama_ibu'),
-                'status_pembayaran' => $request->input('status_pembayaran'),
+  'bukti_pembayaran' => $paymentProofPath,
                 'alamat_pengguna_id' => $alamatPengguna->id,
             ]);
 
             // Save the Pengguna instance to the database
             $pengguna->save();
+
+            // Store the form data in cookies
+            foreach ($request->all() as $key => $value) {
+                Cookie::queue($key, $value, 60 * 24 * 30);  // Store for 1 month
+            }
 
             // Redirect to a success page or show a success message
             return redirect()->route('about');
