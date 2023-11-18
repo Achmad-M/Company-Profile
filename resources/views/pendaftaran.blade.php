@@ -101,7 +101,8 @@
                 <div class="row g-0">
                     <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s">
                         <h2 class="mb-4">Data Diri</h2>
-                        <form id="registrationForm" action="{{ route('pengguna.store') }}" method="POST" enctype="multipart/form-data">
+                        <form id="registrationForm" action="{{ route('pengguna.store', ['id' => request()->id]) }}" method="POST" enctype="multipart/form-data">
+
                             @csrf
 
                             <div class="row g-3">

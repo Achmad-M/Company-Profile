@@ -32,9 +32,8 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::get('/classes', function () {
-    return view('classes');
-})->name('classes');
+Route::get('/classes', [DetailKelasController::class, 'index'])->name('classes'); // update kelas terisi berapa
+
 
 Route::get('/facility', function () {
     return view('facility');
@@ -68,9 +67,7 @@ Route::get('/pendaftaran', function () {
     return view('pendaftaran');
 })->name('pendaftaran');
 
-Route::post('/store-pengguna', [PenggunaController::class, 'store'])->name('pengguna.store');
-
-Route::get('/classes', [DetailKelasController::class, 'index'])->name('classes');
+Route::post('/store-pengguna/{id}', [PenggunaController::class, 'store'])->name('pengguna.store');
 
 Route::get('/index', [DetailKelasController::class, 'home'])->name('index');
 

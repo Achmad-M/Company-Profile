@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pengguna;
 use App\Models\AlamatPengguna;
+use App\Models\PenggunaKelas;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cookie;
 
 class PenggunaController extends Controller
 {
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         try {
             // Validate the incoming request data
@@ -92,12 +93,27 @@ class PenggunaController extends Controller
                 'asal_sekolah' => $request->input('asal_sekolah'),
                 'nama_ayah' => $request->input('nama_ayah'),
                 'nama_ibu' => $request->input('nama_ibu'),
-  'bukti_pembayaran' => $paymentProofPath,
+                'bukti_pembayaran' => $paymentProofPath,
                 'alamat_pengguna_id' => $alamatPengguna->id,
             ]);
 
             // Save the Pengguna instance to the database
             $pengguna->save();
+
+        // Create a new PenggunaKelas instance
+        $penggunaKelas = new PenggunaKelas([
+            'pengguna_id' => $pengguna->id,
+            'detail_kelas_id' => $id,
+        ]);
+
+        // Add debugging statement
+        Log::info('All Request Data: ' . json_encode($request->all()));
+        Log::info('DetailKelas ID: ' . $id);
+
+
+
+        // Save the PenggunaKelas instance to the database
+        $penggunaKelas->save();
 
             // Store the form data in cookies
             foreach ($request->all() as $key => $value) {
