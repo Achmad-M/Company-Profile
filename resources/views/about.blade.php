@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Kider - Preschool Website Template</title>
+    <title>LKP EDMEDIA</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@600&family=Lobster+Two:wght@700&display=swap" rel="stylesheet">
-    
+
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -72,7 +72,7 @@
                         <p> Berdiri sejak 10 Oktober 2010, LKP EDMEDIA telah menjadi pilar dalam memberikan pendidikan berkualitas bagi semua lapisan masyarakat. Kami berkomitmen untuk menciptakan kesempatan belajar yang sama bagi semua, terutama bagi mereka yang berada di kalangan menengah ke bawah. Dengan biaya yang terjangkau dan bahkan gratis dalam beberapa kasus (dengan syarat dan ketentuan berlaku), kami berusaha untuk memastikan bahwa setiap anak memiliki akses ke pendidikan berkualitas.</p>
                         <p class="mb-4">
 
-                        Pendekatan kami dalam proses belajar adalah dengan kesabaran dan keramahan, yang disesuaikan untuk memenuhi kebutuhan spesifik setiap siswa. Kami berusaha untuk menciptakan lingkungan belajar yang mendukung dan mendorong pertumbuhan. Dengan pendekatan belajar yang sabar, kami memberikan waktu yang cukup bagi setiap siswa untuk memahami konsep dan ide. Dengan keramahan, kami memastikan bahwa setiap siswa merasa nyaman dan aman selama proses belajar. Kami percaya bahwa pendidikan adalah hak semua orang, dan kami berdedikasi untuk membuat hak tersebut menjadi kenyataan.</p>
+                            Pendekatan kami dalam proses belajar adalah dengan kesabaran dan keramahan, yang disesuaikan untuk memenuhi kebutuhan spesifik setiap siswa. Kami berusaha untuk menciptakan lingkungan belajar yang mendukung dan mendorong pertumbuhan. Dengan pendekatan belajar yang sabar, kami memberikan waktu yang cukup bagi setiap siswa untuk memahami konsep dan ide. Dengan keramahan, kami memastikan bahwa setiap siswa merasa nyaman dan aman selama proses belajar. Kami percaya bahwa pendidikan adalah hak semua orang, dan kami berdedikasi untuk membuat hak tersebut menjadi kenyataan.</p>
                         <div class="row g-4 align-items-center">
                             <div class="col-sm-6">
                                 <div class="d-flex align-items-center">
@@ -117,7 +117,7 @@
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                             <div class="h-100 d-flex flex-column justify-content-center p-5">
                                 <h1 class="mb-4">Profile Kami</h1>
-                                <p class="mb-4">Dalam  menjalankan kegiatan Belajar dan Mengajar kami membantu setiap anak menemukan keunikan dan mengembangkan kemampuan mereka melalui pendekatan belajar yang tepat, adapun profile kami sebagai berikut.</p>
+                                <p class="mb-4">Dalam menjalankan kegiatan Belajar dan Mengajar kami membantu setiap anak menemukan keunikan dan mengembangkan kemampuan mereka melalui pendekatan belajar yang tepat, adapun profile kami sebagai berikut.</p>
                                 <p class="mb-4">LKP EDMEDIA, yang berlokasi di Jalan Pemuda Batakan Gg. Aster No. 62 RT. 006 Kelurahan Manggar, Kecamatan Balikpapan Timur, Kota Balikpapan, Provinsi Kalimantan Timur, adalah lembaga kursus dan bimbingan belajar yang memenuhi kebutuhan masyarakat sekitar. Dengan harga terjangkau, fasilitas memadai, dan kualitas pendidikan yang baik, LKP EDMEDIA menjadi solusi bagi masyarakat yang mencari tempat bimbingan belajar berkualitas untuk anak-anak mereka.
                                 </p>
                             </div>

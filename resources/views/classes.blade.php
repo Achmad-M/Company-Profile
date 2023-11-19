@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Kider - Preschool Website Template</title>
+    <title>LKP EDMEDIA</title>
+
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -15,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@600&family=Lobster+Two:wght@700&display=swap" rel="stylesheet">
-    
+
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -67,12 +68,12 @@
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                     <h1 class="mb-3">Kelas Bimbel</h1>
-                <p>Berikut adalah kelas yang tersedia, kelas umum adalah kelas PRA TK sampai kelas 8 SMP (Sekolah Menengah Atas). Harap Perhatikan Jam dan Hari yang dipilih.</p>
+                    <p>Berikut adalah kelas yang tersedia, kelas umum adalah kelas PRA TK sampai kelas 8 SMP (Sekolah Menengah Atas). Harap Perhatikan Jam dan Hari yang dipilih.</p>
                 </div>
                 <div class="row g-4">
                     @foreach ($detailKelas as $kelas)
                     <div class="col-lg-4 col-md-6 mt-5 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="classes-item">
+                        <div class="classes-item">
                             <div class="bg-light rounded-circle w-75 mx-auto p-3">
                                 <img class="img-fluid rounded-circle" src="{{ asset('img/about-2.png') }}" alt="">
                             </div>
@@ -86,7 +87,7 @@
                                             <small>Pengajar Utama</small>
                                         </div>
                                     </div>
-                                    <a class="bg-primary text-white rounded-pill py-2 px-3" href="{{ route('pendaftaran', ['id' => $kelas->id]) }}">Rp.150rb/bln</a> 
+                                    <a class="bg-primary text-white rounded-pill py-2 px-3" href="{{ route('pendaftaran', ['id' => $kelas->id]) }}">Rp.150rb/bln</a>
                                 </div>
                                 <div class="row g-1">
                                     <div class="col-4">
@@ -99,16 +100,16 @@
                                         <div class="border-top border-3 border-success pt-2">
                                             <h6 class="text-success mb-1">Hari:</h6>
                                             @if($kelas->waktuKelas && $kelas->waktuKelas->hariKelas)
-        <small>{{ $kelas->waktuKelas->hariKelas->hari }}</small>
-    @endif
+                                            <small>{{ $kelas->waktuKelas->hariKelas->hari }}</small>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="border-top border-3 border-warning pt-2">
                                             <h6 class="text-warning mb-1">Pukul:</h6>
                                             @if($kelas->waktuKelas && $kelas->waktuKelas->sesiKelas)
-        <small>{{ $kelas->waktuKelas->sesiKelas->pukul }}</small>
-    @endif
+                                            <small>{{ $kelas->waktuKelas->sesiKelas->pukul }}</small>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
