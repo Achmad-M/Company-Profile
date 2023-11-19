@@ -45,6 +45,9 @@
         }
 
     </style>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </head>
 <body>
@@ -288,6 +291,47 @@
         </div>
     </div>
     <!-- Data Diri End -->
+    <!-- Modal -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="confirmModalLabel" style="color : white">Informasi Penting</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Terima Kasih</strong> telah mengisi data diri dan bukti pembayaran. Berikut adalah beberapa poin penting:</p>
+                    <ul>
+                        <li>Pendaftaran Anda akan diproses dalam <strong>1 x 24 jam</strong>.</li>
+                        <li>Jika berhasil atau ada kesalahan, Anda akan mendapatkan pesan WhatsApp serta akan masuk grup WhatsApp kelas.</li>
+                        <li>Jika ada kendala, silahkan hubungi <strong>+62 856-5131-9976</strong>.</li>
+                        <li>Silahkan klik tombol <strong>kirim</strong>.</li>
+
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" id="confirmSubmit">Kirim</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        $(document).ready(function() {
+            $("form").on("submit", function(e) {
+                e.preventDefault();
+                $("#confirmModal").modal("show");
+            });
+
+            $("#confirmSubmit").on("click", function() {
+                $("form").off("submit").submit();
+            });
+        });
+
+    </script>
 
     @include('footer')
     <!-- JavaScript Libraries -->
