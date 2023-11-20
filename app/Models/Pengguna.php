@@ -16,5 +16,9 @@ class Pengguna extends Model
         return $this->belongsTo(AlamatPengguna::class, 'alamat_pengguna_id');
     }
 
+        public function penggunaKelas()
+    {
+        return $this->hasMany(PenggunaKelas::class, 'pengguna_id');
+    }
     // Mungkin ada relasi lain yang perlu ditambahkan
 }

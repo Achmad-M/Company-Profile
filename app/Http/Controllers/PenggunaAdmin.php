@@ -9,10 +9,11 @@ class PenggunaAdmin extends Controller
 {
 
     public function index()
-    {
-        $penggunas = Pengguna::all();
-        return view('admin-pengguna-index', compact('penggunas'));
-    }
+{
+    $penggunas = Pengguna::with('penggunaKelas.detailKelas.waktuKelas.hariKelas', 'penggunaKelas.detailKelas.waktuKelas.sesiKelas')->get();
+    return view('admin-pengguna-index', compact('penggunas'));
+}
+
 
     public function update(Request $request, $id)
 {

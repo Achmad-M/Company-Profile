@@ -19,12 +19,15 @@
                                 <th>Foto Diri</th>
                                 <th>Tingkat Sekolah</th>
                                 <th>Nomor HP</th>
+                                <th>Waktu Kelas</th>
                                 <th>Bukti Pembayaran</th>
                                 <th>Status Pembayaran</th>
                                 <th>Edit</th>
                                 <th>Hapus</th>
                             </tr>
                             @foreach($penggunas as $pengguna)
+                            @foreach($pengguna->penggunaKelas as $penggunaKelas)
+
                             <tr>
                                 <td>{{ $pengguna->nama_lengkap }}</td>
                                 <td>{{ $pengguna->jenis_kelamin }}</td>
@@ -42,7 +45,7 @@
                                                     <button type="button" class="close" data-dismiss="modal">×</button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <img src="{{ asset('photos/' . $pengguna->foto_diri) }}" width="100%">
+                                                    <img src="{{ asset('photos/' . $pengguna->foto_diri) }}" width="50%">
                                                 </div>
                                             </div>
                                         </div>
@@ -51,6 +54,11 @@
                                 </td>
                                 <td>{{ $pengguna->tingkat_sekolah }}</td>
                                 <td>{{ $pengguna->no_hp }}</td>
+                                <td>{{ $penggunaKelas->detailKelas->name }} {{ $penggunaKelas->detailKelas->waktuKelas->hariKelas->hari }} {{ $penggunaKelas->detailKelas->waktuKelas->sesiKelas->nama }} {{ $penggunaKelas->detailKelas->waktuKelas->sesiKelas->pukul }} </td>
+
+
+
+
                                 <td>
                                     <!-- Trigger the modal with a button -->
                                     <img src="{{ asset('payment_proofs/' . $pengguna->bukti_pembayaran) }}" width="100" data-toggle="modal" data-target="#buktiModal{{ $pengguna->id }}">
@@ -109,10 +117,6 @@
 
                                                         <input type="text" class="form-control" name="status_pembayaran" value="{{ $pengguna->status_pembayaran }}">
 
-
-
-
-
                                                     </div>
 
                                                     <!-- Add more form fields as needed -->
@@ -136,6 +140,8 @@
 
                             </tr>
                             @endforeach
+                            @endforeach
+
                         </table>
                     </div>
                 </div>
