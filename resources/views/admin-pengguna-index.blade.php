@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
 <body>
+    @include('navbar-admin')
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -22,8 +23,7 @@
                                 <th>Waktu Kelas</th>
                                 <th>Bukti Pembayaran</th>
                                 <th>Status Pembayaran</th>
-                                <th>Edit</th>
-                                <th>Hapus</th>
+                                <th>Action</th>
                             </tr>
                             @foreach($penggunas as $pengguna)
                             @foreach($pengguna->penggunaKelas as $penggunaKelas)
@@ -55,10 +55,6 @@
                                 <td>{{ $pengguna->tingkat_sekolah }}</td>
                                 <td>{{ $pengguna->no_hp }}</td>
                                 <td>{{ $penggunaKelas->detailKelas->name }} {{ $penggunaKelas->detailKelas->waktuKelas->hariKelas->hari }} {{ $penggunaKelas->detailKelas->waktuKelas->sesiKelas->nama }} {{ $penggunaKelas->detailKelas->waktuKelas->sesiKelas->pukul }} </td>
-
-
-
-
                                 <td>
                                     <!-- Trigger the modal with a button -->
                                     <img src="{{ asset('payment_proofs/' . $pengguna->bukti_pembayaran) }}" width="100" data-toggle="modal" data-target="#buktiModal{{ $pengguna->id }}">
@@ -82,7 +78,14 @@
                                 </td>
                                 <td>{{ $pengguna->status_pembayaran }}</td>
                                 <!-- Edit Button -->
-                                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{ $pengguna->id }}">Edit</button></td>
+                                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{ $pengguna->id }}">Edit</button>
+                                    <form action="/delete/{{ $pengguna->id }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                    </form>
+                                </td>
+
 
                                 <!-- Edit Modal -->
                                 <div id="editModal{{ $pengguna->id }}" class="modal fade" role="dialog">
@@ -127,17 +130,6 @@
 
                                     </div>
                                 </div>
-
-
-                                <td>
-                                    <form action="/delete/{{ $pengguna->id }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Hapus</button>
-                                    </form>
-                                </td>
-
-
                             </tr>
                             @endforeach
                             @endforeach

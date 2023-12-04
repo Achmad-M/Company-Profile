@@ -61,7 +61,8 @@
                     <div class="footer-menu">
                         <a href="{{ route('index') }}">Beranda</a>
                         <a href="{{ route('classes') }}">Kelas</a>
-                        <a href="{{ route('admin-pengguna-index') }}">Login Admin</a>
+                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('admin-pengguna-index') }}">Lainnya</a>
                     </div>
                 </div>
             </div>

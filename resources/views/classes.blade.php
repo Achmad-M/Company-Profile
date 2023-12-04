@@ -87,7 +87,8 @@
                                             <small>Pengajar Utama</small>
                                         </div>
                                     </div>
-                                    <a class="bg-primary text-white rounded-pill py-2 px-3" href="{{ route('pendaftaran', ['id' => $kelas->id]) }}">Rp.150rb/bln</a>
+                                    <a class="bg-primary text-white rounded-pill py-2 px-3" href="{{ route('pendaftaran', ['id' => $kelas->id]) }}">{{ $kelas->kelas->harga }}</a>
+
                                 </div>
                                 <div class="row g-1">
                                     <div class="col-4">

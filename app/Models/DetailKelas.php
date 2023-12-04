@@ -33,4 +33,14 @@ class DetailKelas extends Model
     {
         return $this->belongsTo(WaktuKelas::class);
     }
+
+    public function hariKelas()
+    {
+        return $this->waktuKelas->hariKelas();
+    }
+
+    public function sesiKelas()
+    {
+        return $this->waktuKelas->sesiKelas();
+    }
 }

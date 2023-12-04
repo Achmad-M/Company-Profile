@@ -12,17 +12,16 @@ class LoginController extends Controller
         return view('login');
     }
 
-public function login(Request $request)
-{
-    $credentials = $request->only('nama', 'password');
+    public function login(Request $request)
+    {
+        $credentials = $request->only('nama', 'password');
 
-    if (Auth::guard('admin')->attempt($credentials)) {
-        return redirect()->intended('/');
+        if (Auth::guard('admin')->attempt($credentials)) {
+            return redirect()->intended('/');
+        }
+
+        return back()->withErrors([
+            'login' => 'Nama atau password salah.',
+        ]);
     }
-
-    return back()->withErrors([
-        'login' => 'Nama atau password salah.',
-    ]);
-}
-
 }

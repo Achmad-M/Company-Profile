@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class Kelas extends Model
 {
     use HasFactory;
-    protected $fillable = ['waktu_kelas_id', 'pengajar_kelas_id', 'nama', 'kapasitas', 'terisi'];
+    protected $fillable = ['nama','harga'];
 
     public function waktuKelas()
     {

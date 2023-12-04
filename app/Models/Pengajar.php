@@ -25,4 +25,10 @@ class Pengajar extends Model
     protected $casts = [
         'foto_diri' => 'array',
     ];
+
+        public function alamat_pengajar()
+    {
+        return $this->belongsTo(AlamatPengajar::class);
+    }
 }
+
