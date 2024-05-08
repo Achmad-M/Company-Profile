@@ -41,7 +41,8 @@
             <div class="col-lg-3 col-md-6">
                 <h3 class="text-white mb-4">Layanan Kami</h3>
                 <a class="btn btn-link text-white-50" href="{{ route('about') }}">Tentang Kami</a>
-                <a class="btn btn-link text-white-50" href="https://wa.me/6285651319976">Hubungi Kami</a>
+                <a class="btn btn-link text-white-50" href="https://wa.me/6285651319976" class="nav-item nav-link {{ Request::is('contact') ? 'active' : '' }}" target="_blank">Hubungi Kami</a>
+
                 <a class="btn btn-link text-white-50" href="{{ route('classes') }}">Kelas</a>
                 <a class="btn btn-link text-white-50" href="{{ route('facility') }}">Fasilitas Bimbel</a>
                 <a class="btn btn-link text-white-50" href="{{ route('team') }}">Pengajar Populer</a>
@@ -61,7 +62,6 @@
                     <div class="footer-menu">
                         <a href="{{ route('index') }}">Beranda</a>
                         <a href="{{ route('classes') }}">Kelas</a>
-                        <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('admin-pengguna-index') }}">Lainnya</a>
                     </div>
                 </div>

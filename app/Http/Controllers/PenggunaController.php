@@ -6,11 +6,52 @@ use Illuminate\Http\Request;
 use App\Models\Pengguna;
 use App\Models\AlamatPengguna;
 use App\Models\PenggunaKelas;
+use App\Models\DetailKelas;
+use App\Models\Kelas;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cookie;
 
 class PenggunaController extends Controller
 {
+    public function index(Request $request)
+    {
+        $id = $request->query('id');
+        // Validasi 'id' dan fetch data menggunakan Eloquent
+        $detailKelas = DetailKelas::findOrFail($id);
+        $kelas = Kelas::findOrFail($detailKelas->kelas_id);
+
+        // Menghitung total amount
+        $totalAmount = $this->calculateTotalAmount($kelas->harga, $kelas->biaya_pendaftaran);
+
+        // Pass data ke view
+        return view('pendaftaran', [
+            'detailKelas' => $detailKelas,
+            'kelas' => $kelas,
+            'totalAmount' => $totalAmount,
+            'harga' => $kelas->harga, // Add this line
+            'biaya_pendaftaran' => $kelas->biaya_pendaftaran // And this line
+        ]);
+    }
+
+    private function calculateTotalAmount($harga, $biaya_pendaftaran)
+    {
+        // Menghilangkan 'Rp.' dan karakter non-numerik lainnya
+        $harga_numeric = (int)filter_var($harga, FILTER_SANITIZE_NUMBER_INT);
+        $biaya_pendaftaran_numeric = (int)filter_var($biaya_pendaftaran, FILTER_SANITIZE_NUMBER_INT);
+
+        // Convert to float for number_format()
+        $harga_float = floatval($harga_numeric);
+        $biaya_pendaftaran_float = floatval($biaya_pendaftaran_numeric);
+
+        // Menghitung total amount
+        $total = $harga_float + $biaya_pendaftaran_float;
+
+        // Menambahkan nol untuk mencapai format ribuan
+        $total_ribuan = $total * 1000; // Mengalikan dengan 1000 untuk mendapatkan format ribuan
+
+        return $total_ribuan;
+    }
+
     public function store(Request $request, $id)
     {
         try {
@@ -56,28 +97,25 @@ class PenggunaController extends Controller
             // Save the AlamatPengguna instance to the database
             $alamatPengguna->save();
 
- // Process the uploaded photo
-        $photoPath = null;
-        if ($request->hasfile('foto_diri')) {
-            $file = $request->file('foto_diri');
-            $extension = $file->getClientOriginalExtension(); // getting image extension
-            $filename = time() . '.' . $extension;
-            $file->move('photos', $filename);
-            $photoPath = $filename;
-        }
+            // Process the uploaded photo
+            $photoPath = null;
+            if ($request->hasfile('foto_diri')) {
+                $file = $request->file('foto_diri');
+                $extension = $file->getClientOriginalExtension(); // getting image extension
+                $filename = time() . '.' . $extension;
+                $file->move('photos', $filename);
+                $photoPath = $filename;
+            }
 
-        // Process the uploaded payment proof
-        $paymentProofPath = null;
-        if ($request->hasfile('bukti_pembayaran')) {
-            $file = $request->file('bukti_pembayaran');
-            $extension = $file->getClientOriginalExtension(); // getting image extension
-            $filename = time() . '.' . $extension;
-            $file->move('payment_proofs', $filename);
-            $paymentProofPath = $filename;
-        }
-
-
-
+            // Process the uploaded payment proof
+            $paymentProofPath = null;
+            if ($request->hasfile('bukti_pembayaran')) {
+                $file = $request->file('bukti_pembayaran');
+                $extension = $file->getClientOriginalExtension(); // getting image extension
+                $filename = time() . '.' . $extension;
+                $file->move('payment_proofs', $filename);
+                $paymentProofPath = $filename;
+            }
 
             // Create a new Pengguna instance and fill it with the validated data
             $pengguna = new Pengguna([
@@ -95,25 +133,26 @@ class PenggunaController extends Controller
                 'nama_ibu' => $request->input('nama_ibu'),
                 'bukti_pembayaran' => $paymentProofPath,
                 'alamat_pengguna_id' => $alamatPengguna->id,
+                'status_pembayaran' => 'Pending',
             ]);
 
             // Save the Pengguna instance to the database
             $pengguna->save();
 
-        // Create a new PenggunaKelas instance
-        $penggunaKelas = new PenggunaKelas([
-            'pengguna_id' => $pengguna->id,
-            'detail_kelas_id' => $id,
-        ]);
+            // Create a new PenggunaKelas instance
+            $penggunaKelas = new PenggunaKelas([
+                'pengguna_id' => $pengguna->id,
+                'detail_kelas_id' => $id,
+            ]);
 
-        // Add debugging statement
-        Log::info('All Request Data: ' . json_encode($request->all()));
-        Log::info('DetailKelas ID: ' . $id);
+            // Add debugging statement
+            Log::info('All Request Data: ' . json_encode($request->all()));
+            Log::info('DetailKelas ID: ' . $id);
 
 
 
-        // Save the PenggunaKelas instance to the database
-        $penggunaKelas->save();
+            // Save the PenggunaKelas instance to the database
+            $penggunaKelas->save();
 
             // Store the form data in cookies
             foreach ($request->all() as $key => $value) {

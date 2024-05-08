@@ -76,12 +76,14 @@
                         <div class="classes-item">
                             <div class="bg-light rounded-circle w-75 mx-auto p-3">
                                 <img class="img-fluid rounded-circle" src="{{ asset('img/about-2.png') }}" alt="">
+
+                                {{-- <img class="img-fluid rounded-circle" src="{{ asset("photos_kelas/".$kelas->kelas->gambar_kelas) }}" alt=""> --}}
                             </div>
                             <div class="bg-light rounded p-4 pt-5 mt-n5">
                                 <a class="d-block text-center h3 mt-3 mb-4" href="">{{ $kelas->kelas->nama }} {{ $kelas->waktuKelas->hariKelas->hari }} {{ $kelas->waktuKelas->sesiKelas->nama }}</a>
                                 <div class="d-flex align-items-center justify-content-between mb-4">
                                     <div class="d-flex align-items-center">
-                                        <img class="rounded-circle flex-shrink-0" src="{{ asset('img/user.png') }}" alt="" style="width: 45px; height: 45px;">
+                                        <img class="rounded-circle flex-shrink-0" src="{{ asset("photos_pengajar/".$kelas->pengajar->foto_diri) }}" alt="" style="width: 45px; height: 45px;">
                                         <div class="ms-3">
                                             <h6 class="text-primary mb-1">{{ $kelas->pengajar->nama }}</h6>
                                             <small>Pengajar Utama</small>

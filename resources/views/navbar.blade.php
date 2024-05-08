@@ -1,7 +1,7 @@
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5 py-lg-0">
     <a href="{{ route('index') }}" class="navbar-brand">
-        <h1 class="m-0 text-primary"><i class="fa fa-book-reader me-3"></i><img src="{{ asset('img/logo.png') }}" alt="logo edmedia" width="128" height="46.1757"></h1>
+        <h1 class="m-0 text-primary"><img src="{{ asset('img/logo.png') }}" alt="logo edmedia" width="128" height="46.1757"></h1>
     </a>
 
     <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -23,7 +23,7 @@
                     <a href="{{ route('error') }}" class="dropdown-item">404 Error</a> -->
                 </div>
             </div>
-            <a href="https://wa.me/6285651319976" class="nav-item nav-link {{ Request::is('contact') ? 'active' : '' }}">Hubungi Kami</a>
+            <a href="https://wa.me/6285651319976" class="nav-item nav-link {{ Request::is('contact') ? 'active' : '' }}" target="_blank">Hubungi Kami</a>
         </div>
         <a href="{{ route('classes') }}" class="btn btn-primary rounded-pill px-3 d-none d-lg-block">Daftar Kelas<i class="fa fa-arrow-right ms-3"></i></a>
     </div>

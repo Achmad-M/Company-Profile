@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin - Pengguna Kelas</title>
+    <title>Dashboard - Pengguna Kelas</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container py-5">
-        <h1 class="mb-5">Admin - Pengguna Kelas</h1>
+        <h1 class="mb-5">Dashboard - Pengguna Kelas</h1>
 
         <!-- Form untuk menambahkan data -->
         <form action="/admin-penggunakelas" method="POST" class="mb-3">
@@ -29,9 +29,7 @@
                     @foreach($detail_kelas as $kelas)
                     <option value="{{ $kelas->id }}">{{ $kelas->sesiKelas->nama }} - {{ $kelas->sesiKelas->pukul }} - {{ $kelas->hariKelas->hari }}</option>
 
-
                     @endforeach
-
 
                 </select>
             </div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin - Hari Kelas</title>
+    <title>Dashboard - Hari Kelas</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
@@ -12,7 +12,7 @@
     @include('navbar-admin')
 
     <div class="container py-5">
-        <h1 class="mb-5">Admin - Hari Kelas</h1>
+        <h1 class="mb-5">Dashboard - Hari Kelas</h1>
 
         <!-- Form untuk menambahkan data -->
         <form action="/admin-harikelas" method="POST" class="mb-3">
@@ -28,14 +28,15 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Hari</th>
+
                     <th>Action</th>
+                    <th>Hari</th>
+
                 </tr>
             </thead>
             <tbody>
                 @foreach($hari_kelas as $hari)
                 <tr>
-                    <td>{{ $hari->hari }}</td>
                     <td>
                         <!-- Tombol Edit dengan Modal -->
                         <button type="button" class="btn btn-warning mr-2" data-toggle="modal" data-target="#editModal{{ $hari->id }}">Edit</button>
@@ -72,6 +73,9 @@
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </td>
+
+                    <td>{{ $hari->hari }}</td>
+
                 </tr>
                 @endforeach
             </tbody>

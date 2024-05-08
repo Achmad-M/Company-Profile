@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin - Sesi Kelas</title>
+    <title>Dashboard - Sesi Kelas</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
@@ -12,7 +12,7 @@
     @include('navbar-admin')
 
     <div class="container py-5">
-        <h1 class="mb-5">Admin - Sesi Kelas</h1>
+        <h1 class="mb-5">Dashboard - Sesi Kelas</h1>
 
         <!-- Form untuk menambahkan data -->
         <form action="/admin-sesikelas" method="POST" class="mb-3">
@@ -32,16 +32,17 @@
         <table class="table">
             <thead>
                 <tr>
+
+                    <th>Action</th>
                     <th>Nama</th>
                     <th>Pukul</th>
-                    <th>Action</th>
+
                 </tr>
             </thead>
             <tbody>
                 @foreach ($sesi_kelas as $kelas)
                 <tr>
-                    <td>{{ $kelas->nama }}</td>
-                    <td>{{ $kelas->pukul }}</td>
+
                     <td>
                         <!-- Edit button -->
                         <button type="button" class="btn btn-warning mr-2" data-toggle="modal" data-target="#editModal{{ $kelas->id }}">Edit</button>
@@ -82,6 +83,10 @@
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </td>
+
+                    <td>{{ $kelas->nama }}</td>
+                    <td>{{ $kelas->pukul }}</td>
+
                 </tr>
                 @endforeach
             </tbody>

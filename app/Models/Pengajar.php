@@ -22,13 +22,10 @@ class Pengajar extends Model
         'no_hp',
     ];
 
-    protected $casts = [
-        'foto_diri' => 'array',
-    ];
-
-        public function alamat_pengajar()
+    public function alamat_pengajar()
     {
         return $this->belongsTo(AlamatPengajar::class);
     }
+    
 }
 

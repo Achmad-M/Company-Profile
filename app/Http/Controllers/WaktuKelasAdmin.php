@@ -15,7 +15,7 @@ class WaktuKelasAdmin extends Controller
         $waktu_kelas = WaktuKelas::all();
         $hari_kelas = HariKelas::all(); // Query the HariKelas model
         $sesi_kelas = SesiKelas::all();
-    return view('admin-waktukelas', compact('waktu_kelas', 'hari_kelas','sesi_kelas')); // Pass the result to your view
+        return view('admin-waktukelas', compact('waktu_kelas', 'hari_kelas', 'sesi_kelas')); // Pass the result to your view
     }
 
     public function store(Request $request)

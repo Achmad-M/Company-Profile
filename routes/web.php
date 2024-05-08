@@ -13,6 +13,7 @@ use App\Http\Controllers\PengajarController;
 use App\Http\Controllers\DashboardKelasController;
 use App\Http\Controllers\DetailKelasAdminController;
 use App\Http\Controllers\PenggunaKelasController;
+use App\Http\Controllers\AlamatPengajarController;
 use App\Http\Middleware\isLogin;
 
 /*
@@ -26,163 +27,251 @@ use App\Http\Middleware\isLogin;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/index');
+Route::get("/", function () {
+    return redirect("/index");
 });
-Route::get('/index#', function () {
-    return redirect('/index');
+Route::get("/index#", function () {
+    return redirect("/index");
 });
 
-Route::get('/index', function () {
-    return view('index');
-})->name('index');
+Route::get("/index", function () {
+    return view("index");
+})->name("index");
 
+Route::get("/about", function () {
+    return view("about");
+})->name("about");
 
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
+Route::get("/classes", [DetailKelasController::class, "index"])->name(
+    "classes"
+); // update kelas terisi berapa
 
-Route::get('/classes', [DetailKelasController::class, 'index'])->name('classes'); // update kelas terisi berapa
+Route::get("/facility", function () {
+    return view("facility");
+})->name("facility");
 
+Route::get("/team", function () {
+    return view("team");
+})->name("team");
 
-Route::get('/facility', function () {
-    return view('facility');
-})->name('facility');
+Route::get("/call-to-action", function () {
+    return view("call-to-action");
+})->name("call-to-action");
 
-Route::get('/team', function () {
-    return view('team');
-})->name('team');
+Route::get("/appointment", function () {
+    return view("appointment");
+})->name("appointment");
 
-Route::get('/call-to-action', function () {
-    return view('call-to-action');
-})->name('call-to-action');
+Route::get("/testimonial", function () {
+    return view("testimonial");
+})->name("testimonial");
 
-Route::get('/appointment', function () {
-    return view('appointment');
-})->name('appointment');
+Route::get("/error", function () {
+    return view("404");
+})->name("error");
 
-Route::get('/testimonial', function () {
-    return view('testimonial');
-})->name('testimonial');
+Route::get("/contact", function () {
+    return view("contact");
+})->name("contact");
 
-Route::get('/error', function () {
-    return view('404');
-})->name('error');
+// Menggunakan route parameter
+Route::get('/pendaftaran', [PenggunaController::class, 'index'])->name("pendaftaran");
 
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
+Route::get("/dashboard", function () {
+    return view("dashboard");
+})->name("dashboard");
 
-Route::get('/pendaftaran', function () {
-    return view('pendaftaran');
-})->name('pendaftaran');
+Route::post("/store-pengguna/{id}", [PenggunaController::class, "store"])->name(
+    "pengguna.store"
+);
 
-Route::post('/store-pengguna/{id}', [PenggunaController::class, 'store'])->name('pengguna.store');
+Route::get("/index", [DetailKelasController::class, "home"])->name("index");
 
-Route::get('/index', [DetailKelasController::class, 'home'])->name('index');
-
-Route::get('/add-user', function () {
-    $user = new App\Models\Admin;
-    $user->nama = 'admin';
-    $user->password = Hash::make('123');
-    $user->no_hp = '08123';
-    $user->email = '10221030@student.itk.ac.id';
+Route::get("/add-user", function () {
+    $user = new App\Models\Admin();
+    $user->nama = "admin";
+    $user->password = Hash::make("123");
+    $user->no_hp = "08123";
+    $user->email = "10221030@student.itk.ac.id";
     $user->save();
 
-    return redirect()->route('login');
+    return redirect()->route("login");
 });
 
+Route::get("/index", [DetailKelasController::class, "home"])->name("index");
 
-Route::post('/store-pengguna/{id}', [PenggunaController::class, 'store'])->name('pengguna.store');
-
-Route::get('/index', [DetailKelasController::class, 'home'])->name('index');
-
-Route::get('/add-user', function () {
-    $user = new App\Models\Admin;
-    $user->nama = 'admin';
-    $user->password = Hash::make('123');
-    $user->no_hp = '08123';
-    $user->email = '10221030@student.itk.ac.id';
+Route::get("/add-user", function () {
+    $user = new App\Models\Admin();
+    $user->nama = "admin";
+    $user->password = Hash::make("123");
+    $user->no_hp = "08123";
+    $user->email = "10221030@student.itk.ac.id";
     $user->save();
 
-    return redirect()->route('login');
+    return redirect()->route("login");
 });
 
+Route::get("/login", [LoginController::class, "index"])->name("login");
+Route::post("/login", [LoginController::class, "login"]);
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
+Route::group(["middleware" => [isLogin::class]], function () {
+    Route::get("/admin-pengguna-create", function () {
+        return view("admin-pengguna-create");
+    })->name("admin-pengguna-create");
 
-Route::group(['middleware' => [isLogin::class]], function () {
-    Route::get('/admin-pengguna-create', function () {
-        return view('admin-pengguna-create');
-    })->name('admin-pengguna-create');
+    Route::get("/admin-pengguna-index", [PenggunaAdmin::class, "index"])->name(
+        "admin-pengguna-index"
+    );
 
-    Route::get('/admin-pengguna-index', [PenggunaAdmin::class, 'index'])->name('admin-pengguna-index');
+    Route::post("/admin-pengguna-create/store", [
+        PenggunaAdmin::class,
+        "store",
+    ])->name("admin-pengguna-create.store");
 
-    Route::post('/admin-pengguna-create/store', [PenggunaAdmin::class, 'store'])->name('admin-pengguna-create.store');
+    Route::put("/update/{id}", [PenggunaAdmin::class, "update"]);
 
-    Route::put('/update/{id}', [PenggunaAdmin::class, 'update']);
+    Route::delete("/delete/{id}", [PenggunaAdmin::class, "destroy"]);
 
-    Route::delete('/delete/{id}', [PenggunaAdmin::class, 'destroy']);
+    Route::get("/admin-kelas-index", [KelasAdmin::class, "index"])->name(
+        "admin-kelas-index"
+    );
 
-    Route::get('/admin-kelas-index', [KelasAdmin::class, 'index'])->name('admin-kelas-index');
+    // routes/web.php
+    Route::get("/admin-waktukelas", [WaktuKelasAdmin::class, "index"])->name(
+        "admin-waktukelas"
+    );
+    Route::post("/admin-waktukelas", [WaktuKelasAdmin::class, "store"]);
+    Route::get("/admin-waktukelas/{waktu_kelas}/edit", [
+        WaktuKelasAdmin::class,
+        "edit",
+    ]);
+    Route::put("/admin-waktukelas/{waktu_kelas}", [
+        WaktuKelasAdmin::class,
+        "update",
+    ]);
+    Route::delete("/admin-waktukelas/{waktu_kelas}", [
+        WaktuKelasAdmin::class,
+        "destroy",
+    ]);
 
-// routes/web.php
-Route::get('/admin-waktukelas', [WaktuKelasAdmin::class, 'index'])->name('admin-waktukelas');
-Route::post('/admin-waktukelas', [WaktuKelasAdmin::class, 'store']);
-Route::get('/admin-waktukelas/{waktu_kelas}/edit', [WaktuKelasAdmin::class, 'edit']);
-Route::put('/admin-waktukelas/{waktu_kelas}', [WaktuKelasAdmin::class, 'update']);
-Route::delete('/admin-waktukelas/{waktu_kelas}', [WaktuKelasAdmin::class, 'destroy']);
+    Route::get("/admin-sesikelas", [SesiKelasController::class, "index"])->name(
+        "admin-sesikelas"
+    );
+    Route::post("/admin-sesikelas", [SesiKelasController::class, "store"]);
+    Route::get("/admin-sesikelas/{sesi_kelas}/edit", [
+        SesiKelasController::class,
+        "edit",
+    ]);
+    Route::put("/admin-sesikelas/{sesi_kelas}", [
+        SesiKelasController::class,
+        "update",
+    ]);
+    Route::delete("/admin-sesikelas/{sesi_kelas}", [
+        SesiKelasController::class,
+        "destroy",
+    ]);
 
+    Route::get("/admin-harikelas", [HariKelasController::class, "index"])->name(
+        "admin-harikelas"
+    );
+    Route::post("/admin-harikelas", [HariKelasController::class, "store"]);
+    Route::get("/admin-harikelas/{hari_kelas}/edit", [
+        HariKelasController::class,
+        "edit",
+    ]);
+    Route::put("/admin-harikelas/{hari_kelas}", [
+        HariKelasController::class,
+        "update",
+    ]);
+    Route::delete("/admin-harikelas/{hari_kelas}", [
+        HariKelasController::class,
+        "destroy",
+    ]);
 
+    Route::get("/admin-pengajar", [PengajarController::class, "index"])->name(
+        "admin-pengajar"
+    );
 
-Route::get('/admin-sesikelas', [SesiKelasController::class, 'index'])->name('admin-sesikelas');
-Route::post('/admin-sesikelas', [SesiKelasController::class, 'store']);
-Route::get('/admin-sesikelas/{sesi_kelas}/edit', [SesiKelasController::class, 'edit']);
-Route::put('/admin-sesikelas/{sesi_kelas}', [SesiKelasController::class, 'update']);
-Route::delete('/admin-sesikelas/{sesi_kelas}', [SesiKelasController::class, 'destroy']);
+    Route::post("/admin-pengajar/store", [PengajarController::class, "store"]);
 
+    Route::post("/admin-pengajar/storealamat", [AlamatPengajarController::class, "storealamat"]);
 
+    Route::get("/admin-pengajar/{pengajar}/edit", [
+        PengajarController::class,
+        "edit",
+    ]);
+    Route::put("/admin-pengajar/{pengajar}", [
+        PengajarController::class,
+        "update",
+    ]);
 
-Route::get('/admin-harikelas', [HariKelasController::class, 'index'])->name('admin-harikelas');
-Route::post('/admin-harikelas', [HariKelasController::class, 'store']);
-Route::get('/admin-harikelas/{hari_kelas}/edit', [HariKelasController::class, 'edit']);
-Route::put('/admin-harikelas/{hari_kelas}', [HariKelasController::class, 'update']);
-Route::delete('/admin-harikelas/{hari_kelas}', [HariKelasController::class, 'destroy']);
+    Route::delete("/admin-pengajar/{pengajar}/destroy_pengajar", [
+        PengajarController::class,
+        "destroy_pengajar",
+    ]);
 
-Route::get('/admin-pengajar', [PengajarController::class, 'index'])->name('admin-pengajar');
-Route::post('/admin-pengajar', [PengajarController::class, 'store']);
-Route::get('/admin-pengajar/{pengajar}/edit', [PengajarController::class, 'edit']);
-Route::put('/admin-pengajar/{pengajar}', [PengajarController::class, 'update']);
-Route::delete('/admin-pengajar/{pengajar}', [PengajarController::class, 'destroy']);
+    Route::delete("/admin-pengajar/{alamatPengajar}/destroy_alamat_pengajar", [
+        PengajarController::class,
+        "destroy_alamat_pengajar",
+    ]);
 
+    Route::get("/admin-kelas", [
+        DashboardKelasController::class,
+        "index",
+    ])->name("admin-kelas");
+    Route::post("/admin-kelas", [DashboardKelasController::class, "store"]);
+    Route::get("/admin-kelas/{kelas}/edit", [
+        DashboardKelasController::class,
+        "edit",
+    ]);
+    Route::put("/admin-kelas/{kelas}", [
+        DashboardKelasController::class,
+        "update",
+    ]);
+    Route::delete("/admin-kelas/{kelas}", [
+        DashboardKelasController::class,
+        "destroy",
+    ]);
 
-Route::get('/admin-kelas', [DashboardKelasController::class, 'index'])->name('admin-kelas');
-Route::post('/admin-kelas', [DashboardKelasController::class, 'store']);
-Route::get('/admin-kelas/{kelas}/edit', [DashboardKelasController::class, 'edit']);
-Route::put('/admin-kelas/{kelas}', [DashboardKelasController::class, 'update']);
-Route::delete('/admin-kelas/{kelas}', [DashboardKelasController::class, 'destroy']);
+    Route::get("/admin-detailkelas", [
+        DetailKelasAdminController::class,
+        "index",
+    ])->name("admin-detailkelas");
+    Route::post("/admin-detailkelas", [
+        DetailKelasAdminController::class,
+        "store",
+    ]);
+    Route::get("/admin-detailkelas/{detail_kelas}/edit", [
+        DetailKelasAdminController::class,
+        "edit",
+    ]);
+    Route::put("/admin-detailkelas/{detail_kelas}", [
+        DetailKelasAdminController::class,
+        "update",
+    ]);
+    Route::delete("/admin-detailkelas/{detail_kelas}", [
+        DetailKelasAdminController::class,
+        "destroy",
+    ])->name("admin-detailkelas.destroy");
 
-Route::get('/admin-detailkelas', [DetailKelasAdminController::class, 'index'])->name('admin-detailkelas');
-Route::post('/admin-detailkelas', [DetailKelasAdminController::class, 'store']);
-Route::get('/admin-detailkelas/{detail_kelas}/edit', [DetailKelasAdminController::class, 'edit']);
-Route::put('/admin-detailkelas/{detail_kelas}', [DetailKelasAdminController::class, 'update']);
-Route::delete('/admin-detailkelas/{detail_kelas}', [DetailKelasAdminController::class, 'destroy'])->name('admin-detailkelas.destroy');
-
-Route::get('/admin-penggunakelas', [PenggunaKelasController::class, 'index']);
-Route::post('/admin-penggunakelas', [PenggunaKelasController::class, 'store']);
-Route::get('/admin-penggunakelas/{pengguna_kelas}/edit', [PenggunaKelasController::class, 'edit']);
-Route::put('/admin-penggunakelas/{pengguna_kelas}', [PenggunaKelasController::class, 'update']);
-Route::delete('/admin-penggunakelas/{pengguna_kelas}', [PenggunaKelasController::class, 'destroy']);
-
-
-
-
-
-
+    Route::get("/admin-penggunakelas", [
+        PenggunaKelasController::class,
+        "index",
+    ]);
+    Route::post("/admin-penggunakelas", [
+        PenggunaKelasController::class,
+        "store",
+    ]);
+    Route::get("/admin-penggunakelas/{pengguna_kelas}/edit", [
+        PenggunaKelasController::class,
+        "edit",
+    ]);
+    Route::put("/admin-penggunakelas/{pengguna_kelas}", [
+        PenggunaKelasController::class,
+        "update",
+    ]);
+    Route::delete("/admin-penggunakelas/{pengguna_kelas}", [
+        PenggunaKelasController::class,
+        "destroy",
+    ]);
 });
-
-
-    
-
-?>
