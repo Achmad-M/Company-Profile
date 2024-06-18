@@ -1,0 +1,13 @@
+{
+    "plugins": ["@prettier/plugin-php"],
+    "phpSingleQuote": false,
+    "overrides": [
+        {
+            "files": ["*.php"],
+            "options": {
+                "parser": "php",
+                "tabWidth": 4
+            }
+        }
+    ]
+}

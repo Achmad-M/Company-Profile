@@ -1,30 +1,24 @@
 <?php
 
+// app/Models/Pengguna.php
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Pengguna extends Model
 {
-    protected $table = 'pengguna';
+    protected $table = 'penggunas';
+    protected $fillable = ['alamat_pengguna_id', 'nama_lengkap', 'nama_panggilan', 'jenis_kelamin', 'tmpt_tgl_lahir', 'foto_diri', 'agama', 'no_hp', 'email','tingkat_sekolah', 'asal_sekolah', 'nama_ayah', 'nama_ibu','bukti_pembayaran', 'status_pembayaran'];
 
-    protected $fillable = [
-        'nama',
-        'email',
-        'no_hp',
-        'id_kelas',
-        'status_pembayaran',
-        'barcode',
-        'created_at',
-        'updated_at',
-        'admin_id',
-    ];
-
-    public function kelas()
+    public function alamatPengguna()
     {
-        return $this->belongsTo(Kelas::class, 'id_kelas');
+        return $this->belongsTo(AlamatPengguna::class, 'alamat_pengguna_id');
     }
 
-    use HasFactory;
+        public function penggunaKelas()
+    {
+        return $this->hasMany(PenggunaKelas::class, 'pengguna_id');
+    }
+    // Mungkin ada relasi lain yang perlu ditambahkan
 }

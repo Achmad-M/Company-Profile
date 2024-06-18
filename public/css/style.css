@@ -1,7 +1,7 @@
 /********** Template CSS **********/
 :root {
-    --primary: #FE5D37;
-    --light: #FFF5F3;
+    --primary: #004a93;
+    --light: #cce6ff;
     --dark: #103741;
 }
 
@@ -13,30 +13,32 @@
     z-index: 99;
 }
 
-
 /*** Spinner ***/
 #spinner {
     opacity: 0;
     visibility: hidden;
-    transition: opacity .5s ease-out, visibility 0s linear .5s;
+    transition:
+        opacity 0.5s ease-out,
+        visibility 0s linear 0.5s;
     z-index: 99999;
 }
 
 #spinner.show {
-    transition: opacity .5s ease-out, visibility 0s linear 0s;
+    transition:
+        opacity 0.5s ease-out,
+        visibility 0s linear 0s;
     visibility: visible;
     opacity: 1;
 }
 
-
 /*** Button ***/
 .btn {
     font-weight: 500;
-    transition: .5s;
+    transition: 0.5s;
 }
 
 .btn.btn-primary {
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .btn-square {
@@ -65,7 +67,6 @@
     border-radius: 50px;
 }
 
-
 /*** Heading ***/
 h1,
 h2,
@@ -81,7 +82,7 @@ h4,
 .display-4,
 .display-5,
 .display-6 {
-    font-family: 'Lobster Two', cursive;
+    font-family: "Lobster Two", cursive;
     font-weight: 700;
 }
 
@@ -93,9 +94,8 @@ h6,
 }
 
 .font-secondary {
-    font-family: 'Lobster Two', cursive;
+    font-family: "Lobster Two", cursive;
 }
-
 
 /*** Navbar ***/
 .navbar .navbar-nav .nav-link {
@@ -112,7 +112,7 @@ h6,
 
 .navbar.sticky-top {
     top: -100px;
-    transition: .5s;
+    transition: 0.5s;
 }
 
 .navbar .dropdown-toggle::after {
@@ -122,22 +122,22 @@ h6,
     font-weight: 900;
     vertical-align: middle;
     margin-left: 5px;
-    transition: .5s;
+    transition: 0.5s;
 }
 
-.navbar .dropdown-toggle[aria-expanded=true]::after {
+.navbar .dropdown-toggle[aria-expanded="true"]::after {
     transform: rotate(-180deg);
 }
 
 @media (max-width: 991.98px) {
-    .navbar .navbar-nav .nav-link  {
+    .navbar .navbar-nav .nav-link {
         margin-right: 0;
         padding: 10px 0;
     }
 
     .navbar .navbar-nav {
         margin-top: 15px;
-        border-top: 1px solid #EEEEEE;
+        border-top: 1px solid #eeeeee;
     }
 }
 
@@ -148,18 +148,16 @@ h6,
         margin-top: 0;
         opacity: 0;
         visibility: hidden;
-        transition: .5s;
-        
+        transition: 0.5s;
     }
 
     .navbar .nav-item:hover .dropdown-menu {
         top: 100%;
         visibility: visible;
-        transition: .5s;
+        transition: 0.5s;
         opacity: 1;
     }
 }
-
 
 /*** Header ***/
 .header-carousel::before,
@@ -189,7 +187,7 @@ h6,
         position: relative;
         min-height: 500px;
     }
-    
+
     .header-carousel .owl-carousel-item img {
         position: absolute;
         width: 100%;
@@ -225,12 +223,12 @@ h6,
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #FFFFFF;
+    color: #ffffff;
     background: transparent;
-    border: 1px solid #FFFFFF;
+    border: 1px solid #ffffff;
     border-radius: 45px;
     font-size: 22px;
-    transition: .5s;
+    transition: 0.5s;
 }
 
 .header-carousel .owl-nav .owl-prev:hover,
@@ -240,14 +238,15 @@ h6,
 }
 
 .page-header {
-    background: linear-gradient(rgba(0, 0, 0, .2), rgba(0, 0, 0, .2)), url(../img/carousel-1.jpg) center center no-repeat;
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+        url(../img/carousel-1.png) center center no-repeat;
     background-size: cover;
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
-    color: rgba(255, 255, 255, .5);
+    color: rgba(255, 255, 255, 0.5);
 }
-
 
 /*** Facility ***/
 .facility-item .facility-icon {
@@ -268,8 +267,8 @@ h6,
     height: 100%;
     top: 0;
     left: 0;
-    background: rgba(255, 255, 255, .9);
-    transition: .5s;
+    background: rgba(255, 255, 255, 0.9);
+    transition: 0.5s;
     z-index: 1;
 }
 
@@ -311,8 +310,8 @@ h6,
     height: 100%;
     top: 0;
     left: 0;
-    background: rgba(255, 255, 255, .9);
-    transition: .5s;
+    background: rgba(255, 255, 255, 0.9);
+    transition: 0.5s;
     z-index: 1;
 }
 
@@ -327,33 +326,30 @@ h6,
 }
 
 .facility-item * {
-    transition: .5s;
+    transition: 0.5s;
 }
 
 .facility-item:hover * {
-    color: #FFFFFF !important;
+    color: #ffffff !important;
 }
-
 
 /*** About ***/
 .about-img img {
-    transition: .5s;
+    transition: 0.5s;
 }
 
 .about-img img:hover {
     background: var(--primary) !important;
 }
 
-
 /*** Classes ***/
 .classes-item {
-    transition: .5s;
+    transition: 0.5s;
 }
 
 .classes-item:hover {
     margin-top: -10px;
 }
-
 
 /*** Team ***/
 .team-item .team-text {
@@ -366,16 +362,15 @@ h6,
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: #FFFFFF;
+    background: #ffffff;
     border: 17px solid var(--light);
     border-radius: 250px;
-    transition: .5s;
+    transition: 0.5s;
 }
 
 .team-item:hover .team-text {
     border-color: var(--primary);
 }
-
 
 /*** Testimonial ***/
 .testimonial-carousel {
@@ -391,7 +386,7 @@ h6,
 }
 
 .testimonial-carousel .testimonial-item .border {
-    border: 1px dashed rgba(0, 185, 142, .3) !important;
+    border: 1px dashed rgba(0, 185, 142, 0.3) !important;
 }
 
 .testimonial-carousel .owl-nav {
@@ -414,18 +409,17 @@ h6,
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #FFFFFF;
+    color: #ffffff;
     background: var(--primary);
     border-radius: 45px;
     font-size: 20px;
-    transition: .5s;
+    transition: 0.5s;
 }
 
 .testimonial-carousel .owl-nav .owl-prev:hover,
 .testimonial-carousel .owl-nav .owl-next:hover {
     background: var(--dark);
 }
-
 
 /*** Footer ***/
 .footer .btn.btn-social {
@@ -435,10 +429,10 @@ h6,
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #FFFFFF;
-    border: 1px solid rgba(255,255,255,0.5);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 45px;
-    transition: .3s;
+    transition: 0.3s;
 }
 
 .footer .btn.btn-social:hover {
@@ -454,7 +448,7 @@ h6,
     font-size: 16px;
     font-weight: normal;
     text-transform: capitalize;
-    transition: .3s;
+    transition: 0.3s;
 }
 
 .footer .btn.btn-link::before {
@@ -472,23 +466,23 @@ h6,
 }
 
 .footer .form-control {
-    border-color: rgba(255,255,255,0.5);
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 .footer .copyright {
     padding: 25px 0;
     font-size: 15px;
-    border-top: 1px solid rgba(256, 256, 256, .1);
+    border-top: 1px solid rgba(256, 256, 256, 0.1);
 }
 
 .footer .copyright a {
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .footer .footer-menu a {
     margin-right: 15px;
     padding-right: 15px;
-    border-right: 1px solid rgba(255, 255, 255, .1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer .copyright a:hover,

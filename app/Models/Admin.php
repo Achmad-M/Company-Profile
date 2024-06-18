@@ -1,31 +1,19 @@
 <?php
 
+// app/Models/Admin.php
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Auth\Authenticatable;
 
-class Admin extends Model
+class Admin extends Model implements AuthenticatableContract
 {
-    protected $table = 'admin';
+    use HasFactory, Authenticatable;
+    protected $fillable = ['nama', 'password', 'no_hp', 'email'];
 
-    protected $fillable = [
-        'nama',
-        'email',
-        'no_hp',
-        'created_at',
-        'updated_at',
-    ];
-
-    public function kelas()
-    {
-        return $this->hasMany(Kelas::class, 'admin_id');
-    }
-
-    public function pengguna()
-    {
-        return $this->hasMany(Pengguna::class, 'admin_id');
-    }
-
-    use HasFactory;
+    // Tidak ada relasi pada contoh ini
 }
+
